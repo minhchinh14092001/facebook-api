@@ -1,7 +1,7 @@
 POST :
 > GET ONE = 
 > GET ALL = OK
-> CREATE = "authorId must be an integer number"
+> CREATE = Ok
 > Update =
 
 

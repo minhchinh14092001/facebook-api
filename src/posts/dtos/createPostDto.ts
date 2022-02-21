@@ -1,7 +1,7 @@
 import { IsNotEmpty, IsInt } from 'class-validator';
 
 export class CreatePostDto {
-  @IsInt()
+  @IsNotEmpty()
   authorId: string;
 
   @IsNotEmpty()

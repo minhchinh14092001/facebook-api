@@ -29,9 +29,8 @@ let AuthenticationController = class AuthenticationController {
                     lastName: data.lastName,
                     userId: user.id
                 } })
-                .then((da) => {
-                console.log(da);
-                return { user: user };
+                .then(() => {
+                return ({ user: user });
             });
         });
     }

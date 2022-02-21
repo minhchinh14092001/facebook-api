@@ -14,7 +14,7 @@ const class_validator_1 = require("class-validator");
 class CreatePostDto {
 }
 __decorate([
-    (0, class_validator_1.IsInt)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreatePostDto.prototype, "authorId", void 0);
 __decorate([

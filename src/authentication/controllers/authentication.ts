@@ -23,10 +23,8 @@ export class AuthenticationController {
             .then(() => {
                 return ({ user: user })
             })
-
             
         })
- 
     }
     
     @Post('/login')
