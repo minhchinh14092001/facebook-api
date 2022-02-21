@@ -15,13 +15,13 @@ export class PostsController {
   }
   
   @Patch(':id')
-  update(@Param('id') id: string, @Body() data: UpdatePostDto) {
-      return this.prisma.post.update({ id, data });
+  update(@Param('id') id: number, @Body() data: UpdatePostDto) {
+      return this.prisma.post.update({ where: { id }, data });
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-      return this.prisma.post.findUnique({ id });
+  findOne(@Param('id') id: number) {
+      return this.prisma.post.findUnique({ where: { id } });
   }
 
   @Get()
@@ -30,7 +30,7 @@ export class PostsController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-      return this.prisma.post.delete({ id });
+  remove(@Param('id') id: number) {
+      return this.prisma.post.delete({ where: { id } });
   }
 }

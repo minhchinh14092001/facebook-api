@@ -2,8 +2,8 @@ import { IsNotEmpty } from 'class-validator';
 
 export class UpdateProfile {
   @IsNotEmpty()
-  firstName?: number;
+  firstName?: string;
 
   @IsNotEmpty()
-  lastName?: number;
+  lastName?: string;
 }

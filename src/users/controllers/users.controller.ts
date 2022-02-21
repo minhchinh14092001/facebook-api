@@ -10,17 +10,17 @@ export class UsersController {
 
     @Get(':id/profile')
     findOne(@Param('id') id: number) {
-        return this.prisma.user.findUnique({ id });
+        return this.prisma.profile.findUnique({ where: { id } });
     }
 
     @Patch(':id/profile')
     findMany(@Param('id') id: number, @Body() data: UpdateProfile) {
-        return this.prisma.user.update({ id, data });
+        return this.prisma.profile.update({ where: { id }, data });
     }
 
     @Get(':id/posts')
     findManyPost(@Param('id') id: number) {
-        return this.prisma.post.findMany({ id });
+        return this.prisma.post.findMany({ where: { id } });
     }
 
 
