@@ -1,4 +1,6 @@
-import { Controller, Body, UseGuards, Post } from '@nestjs/common';
+import { Controller, Body, UseGuards, Post, Res, HttpStatus  } from '@nestjs/common';
+import { Response } from 'express';
+
 import { PrismaService } from '../../database/services/prisma.service';
 // import { JwtGuard } from '../../authentication/guards/jwt.guard';
 import { LoginDto } from '../dtos/loginDto';
@@ -11,7 +13,7 @@ export class AuthenticationController {
     constructor(private readonly prisma: PrismaService) {}
 
     @Post('/register')
-    register(@Body() data: RegisterDto) {
+    register(@Res() res: Response, @Body() data: RegisterDto) {
         this.prisma.user.create({ data: { email: data.email, password: data.password } })
         .then((user) => {
 
@@ -21,7 +23,7 @@ export class AuthenticationController {
                 userId: user.id
             } })
             .then(() => {
-                return ({ user: user })
+                return res.status(HttpStatus.OK).json({ user: user })
             })
             
         })

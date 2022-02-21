@@ -21,7 +21,7 @@ let AuthenticationController = class AuthenticationController {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    register(data) {
+    register(res, data) {
         this.prisma.user.create({ data: { email: data.email, password: data.password } })
             .then((user) => {
             this.prisma.profile.create({ data: {
@@ -29,8 +29,9 @@ let AuthenticationController = class AuthenticationController {
                     lastName: data.lastName,
                     userId: user.id
                 } })
-                .then(() => {
-                return ({ user: user });
+                .then((d) => {
+                console.log(d);
+                return res.status(common_1.HttpStatus.OK).json({ user: user });
             });
         });
     }
@@ -39,9 +40,10 @@ let AuthenticationController = class AuthenticationController {
 };
 __decorate([
     (0, common_1.Post)('/register'),
-    __param(0, (0, common_1.Body)()),
+    __param(0, (0, common_1.Res)()),
+    __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [RegisterDto_1.RegisterDto]),
+    __metadata("design:paramtypes", [Object, RegisterDto_1.RegisterDto]),
     __metadata("design:returntype", void 0)
 ], AuthenticationController.prototype, "register", null);
 __decorate([
