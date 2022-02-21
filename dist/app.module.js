@@ -15,7 +15,7 @@ let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [authentication_module_1.AuthenticationModule, users_module_1.UserssModule, posts_module_1.PostsModule],
+        imports: [authentication_module_1.AuthenticationModule, users_module_1.UsersModule, posts_module_1.PostsModule],
     })
 ], AppModule);
 exports.AppModule = AppModule;

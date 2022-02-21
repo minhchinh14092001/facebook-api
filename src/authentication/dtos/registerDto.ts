@@ -1,7 +1,7 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsEmail, IsNotEmpty } from 'class-validator';
 
 export class RegisterDto {
-  @IsNotEmpty()
+  @IsEmail() @IsNotEmpty()
   email: string;
 
   @IsNotEmpty()

@@ -9,28 +9,28 @@ import { UpdatePostDto } from '../dtos/updatePostDto';
 export class PostsController {
   constructor(private readonly prisma: PrismaService) {}
 
-  @Post()
-  create(@Body() data: CreatePostDto) {
-      return this.prisma.post.create({ data });
-  }
-  
-  @Patch(':id')
-  update(@Param('id') id: number, @Body() data: UpdatePostDto) {
-      return this.prisma.post.update({ where: { id }, data });
-  }
+    @Post()
+    create(@Body() data: CreatePostDto) {
+        return this.prisma.post.create({ data });
+    }
+    
+    @Patch(':id')
+    update(@Param('id') id: number, @Body() data: UpdatePostDto) {
+        return this.prisma.post.update({ where: { id }, data });
+    }
 
-  @Get(':id')
-  findOne(@Param('id') id: number) {
-      return this.prisma.post.findUnique({ where: { id } });
-  }
+    @Get(':id')
+    findOne(@Param('id') id: number) {
+        return this.prisma.post.findUnique({ where: { id } });
+    }
 
-  @Get()
-  findMany() {
-      return this.prisma.post.findMany();
-  }
+    @Get()
+    findMany() {
+        return this.prisma.post.findMany();
+    }
 
-  @Delete(':id')
-  remove(@Param('id') id: number) {
-      return this.prisma.post.delete({ where: { id } });
-  }
+    @Delete(':id')
+    remove(@Param('id') id: number) {
+        return this.prisma.post.delete({ where: { id } });
+    }
 }
