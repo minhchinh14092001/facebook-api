@@ -4,6 +4,6 @@ import { RegisterDto } from '../dtos/RegisterDto';
 export declare class AuthenticationController {
     private readonly prisma;
     constructor(prisma: PrismaService);
-    register(data: RegisterDto, firstName: string, lastName: string): void;
+    register(data: RegisterDto): void;
     login(data: LoginDto): void;
 }

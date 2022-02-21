@@ -22,5 +22,13 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], RegisterDto.prototype, "password", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], RegisterDto.prototype, "firstName", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], RegisterDto.prototype, "lastName", void 0);
 exports.RegisterDto = RegisterDto;
 //# sourceMappingURL=RegisterDto.js.map

@@ -11,17 +11,17 @@ export class AuthenticationController {
     constructor(private readonly prisma: PrismaService) {}
 
     @Post('/register')
-    register(@Body() data: RegisterDto, @Body() firstName: string, @Body() lastName: string) {
+    register(@Body() data: RegisterDto) {
         this.prisma.user.create({ data: { email: data.email, password: data.password } })
         .then((user) => {
 
             this.prisma.profile.create({ data: {
-                firstName: firstName,
-                lastName: lastName,
+                firstName: data.firstName,
+                lastName: data.lastName,
                 userId: user.id
             } })
             .then(() => {
-                return { user: user }
+                return ({ user: user })
             })
 
             
