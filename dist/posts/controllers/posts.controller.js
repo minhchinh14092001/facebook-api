@@ -14,28 +14,28 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PostsController = void 0;
 const common_1 = require("@nestjs/common");
-const prisma_service_1 = require("../../database/services/prisma.service");
 const jwt_guard_1 = require("../../authentication/guards/jwt.guard");
 const createPostDto_1 = require("../dtos/createPostDto");
 const updatePostDto_1 = require("../dtos/updatePostDto");
+const posts_service_1 = require("../services/posts.service");
 let PostsController = class PostsController {
-    constructor(prisma) {
-        this.prisma = prisma;
+    constructor(postsService) {
+        this.postsService = postsService;
     }
     create(data) {
-        return this.prisma.post.create({ data });
+        return this.postsService.create(data);
     }
     update(id, data) {
-        return this.prisma.post.update({ where: { id }, data });
+        return this.postsService.update(id, data);
     }
     findOne(id) {
-        return this.prisma.post.findUnique({ where: { id } });
+        return this.postsService.findOne(id);
     }
     findMany() {
-        return this.prisma.post.findMany();
+        return this.postsService.findMany();
     }
     remove(id) {
-        return this.prisma.post.delete({ where: { id } });
+        return this.postsService.delete(id);
     }
 };
 __decorate([
@@ -76,7 +76,7 @@ __decorate([
 PostsController = __decorate([
     (0, common_1.UseGuards)(jwt_guard_1.JwtGuard),
     (0, common_1.Controller)('posts'),
-    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+    __metadata("design:paramtypes", [posts_service_1.PostsService])
 ], PostsController);
 exports.PostsController = PostsController;
 //# sourceMappingURL=posts.controller.js.map

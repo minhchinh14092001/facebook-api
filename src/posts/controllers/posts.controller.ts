@@ -8,38 +8,38 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { PrismaService } from '../../database/services/prisma.service';
 import { JwtGuard } from '../../authentication/guards/jwt.guard';
 import { CreatePostDto } from '../dtos/createPostDto';
 import { UpdatePostDto } from '../dtos/updatePostDto';
+import { PostsService } from '../services/posts.service';
 
 @UseGuards(JwtGuard)
 @Controller('posts')
 export class PostsController {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly postsService: PostsService) {}
 
   @Post()
   create(@Body() data: CreatePostDto) {
-    return this.prisma.post.create({ data });
+    return this.postsService.create(data);
   }
 
   @Patch(':id')
   update(@Param('id') id: number, @Body() data: UpdatePostDto) {
-    return this.prisma.post.update({ where: { id }, data });
+    return this.postsService.update(id, data);
   }
 
   @Get(':id')
   findOne(@Param('id') id: number) {
-    return this.prisma.post.findUnique({ where: { id } });
+    return this.postsService.findOne(id);
   }
 
   @Get()
   findMany() {
-    return this.prisma.post.findMany();
+    return this.postsService.findMany();
   }
 
   @Delete(':id')
   remove(@Param('id') id: number) {
-    return this.prisma.post.delete({ where: { id } });
+    return this.postsService.delete(id);
   }
 }

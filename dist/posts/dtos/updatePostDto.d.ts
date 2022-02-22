@@ -1,4 +1,4 @@
 export declare class UpdatePostDto {
-    authorId: string;
-    message: string;
+    authorId?: string;
+    message?: string;
 }

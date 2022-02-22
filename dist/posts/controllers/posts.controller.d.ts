@@ -1,9 +1,9 @@
-import { PrismaService } from '../../database/services/prisma.service';
 import { CreatePostDto } from '../dtos/createPostDto';
 import { UpdatePostDto } from '../dtos/updatePostDto';
+import { PostsService } from '../services/posts.service';
 export declare class PostsController {
-    private readonly prisma;
-    constructor(prisma: PrismaService);
+    private readonly postsService;
+    constructor(postsService: PostsService);
     create(data: CreatePostDto): import(".prisma/client").Prisma.Prisma__PostClient<import(".prisma/client").Post>;
     update(id: number, data: UpdatePostDto): import(".prisma/client").Prisma.Prisma__PostClient<import(".prisma/client").Post>;
     findOne(id: number): import(".prisma/client").Prisma.Prisma__PostClient<import(".prisma/client").Post>;

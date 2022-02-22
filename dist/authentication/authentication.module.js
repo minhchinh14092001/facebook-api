@@ -9,13 +9,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthenticationModule = void 0;
 const common_1 = require("@nestjs/common");
 const database_module_1 = require("../database/database.module");
-const authentication_1 = require("./controllers/authentication");
+const authentication_controller_1 = require("./controllers/authentication.controller");
+const authentication_service_1 = require("./services/authentication.service");
 let AuthenticationModule = class AuthenticationModule {
 };
 AuthenticationModule = __decorate([
     (0, common_1.Module)({
         imports: [database_module_1.DatabaseModule],
-        controllers: [authentication_1.AuthenticationController]
+        controllers: [authentication_controller_1.AuthenticationController],
+        providers: [authentication_service_1.AuthenticationService]
     })
 ], AuthenticationModule);
 exports.AuthenticationModule = AuthenticationModule;

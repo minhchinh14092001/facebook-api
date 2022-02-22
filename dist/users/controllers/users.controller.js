@@ -14,21 +14,21 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
-const prisma_service_1 = require("../../database/services/prisma.service");
 const jwt_guard_1 = require("../../authentication/guards/jwt.guard");
 const updateProfile_1 = require("../dtos/updateProfile");
+const users_service_1 = require("../services/users.service");
 let UsersController = class UsersController {
-    constructor(prisma) {
-        this.prisma = prisma;
+    constructor(usersservice) {
+        this.usersservice = usersservice;
     }
     findOne(id) {
-        return this.prisma.profile.findUnique({ where: { id } });
+        return this.usersservice.findOne(id);
     }
-    findMany(id, data) {
-        return this.prisma.profile.update({ where: { id }, data });
+    update(id, data) {
+        return this.usersservice.update(id, data);
     }
-    findManyPost(id) {
-        return this.prisma.post.findMany({ where: { id } });
+    findPosts(id) {
+        return this.usersservice.findPosts(id);
     }
 };
 __decorate([
@@ -45,18 +45,18 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, updateProfile_1.UpdateProfile]),
     __metadata("design:returntype", void 0)
-], UsersController.prototype, "findMany", null);
+], UsersController.prototype, "update", null);
 __decorate([
     (0, common_1.Get)(':id/posts'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
-], UsersController.prototype, "findManyPost", null);
+], UsersController.prototype, "findPosts", null);
 UsersController = __decorate([
     (0, common_1.UseGuards)(jwt_guard_1.JwtGuard),
     (0, common_1.Controller)('users'),
-    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+    __metadata("design:paramtypes", [users_service_1.UsersService])
 ], UsersController);
 exports.UsersController = UsersController;
 //# sourceMappingURL=users.controller.js.map
