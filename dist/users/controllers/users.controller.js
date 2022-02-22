@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../../database/services/prisma.service");
+const jwt_guard_1 = require("../../authentication/guards/jwt.guard");
 const updateProfile_1 = require("../dtos/updateProfile");
 let UsersController = class UsersController {
     constructor(prisma) {
@@ -53,6 +54,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "findManyPost", null);
 UsersController = __decorate([
+    (0, common_1.UseGuards)(jwt_guard_1.JwtGuard),
     (0, common_1.Controller)('users'),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService])
 ], UsersController);
