@@ -9,13 +9,13 @@ export class UsersController {
   constructor(private readonly usersservice: UsersService) {}
 
   @Get(':id/profile')
-  findOne(@Param('id') id: number) {
-    return this.usersservice.findOne(id);
+  findOne(@Param('id') id: string) {
+    return this.usersservice.findOne(JSON.parse(id));
   }
 
   @Patch(':id/profile')
-  update(@Param('id') id: number, @Body() data: UpdateProfile) {
-    return this.usersservice.update(id, data);
+  update(@Param('id') id: string, @Body() data: UpdateProfile) {
+    return this.usersservice.update(JSON.parse(id), data);
   }
 
   @Get(':id/posts')

@@ -24,13 +24,13 @@ export class PostsController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: number, @Body() data: UpdatePostDto) {
-    return this.postsService.update(id, data);
+  update(@Param('id') id: string, @Body() data: UpdatePostDto) {
+    return this.postsService.update(JSON.parse(id), data);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: number) {
-    return this.postsService.findOne(id);
+  findOne(@Param('id') id: string) {
+    return this.postsService.findOne(JSON.parse(id));
   }
 
   @Get()
@@ -39,7 +39,7 @@ export class PostsController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: number) {
-    return this.postsService.delete(id);
+  remove(@Param('id') id: string) {
+    return this.postsService.delete(JSON.parse(id));
   }
 }

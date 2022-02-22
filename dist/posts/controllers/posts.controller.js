@@ -26,16 +26,16 @@ let PostsController = class PostsController {
         return this.postsService.create(data);
     }
     update(id, data) {
-        return this.postsService.update(id, data);
+        return this.postsService.update(JSON.parse(id), data);
     }
     findOne(id) {
-        return this.postsService.findOne(id);
+        return this.postsService.findOne(JSON.parse(id));
     }
     findMany() {
         return this.postsService.findMany();
     }
     remove(id) {
-        return this.postsService.delete(id);
+        return this.postsService.delete(JSON.parse(id));
     }
 };
 __decorate([
@@ -50,14 +50,14 @@ __decorate([
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, updatePostDto_1.UpdatePostDto]),
+    __metadata("design:paramtypes", [String, updatePostDto_1.UpdatePostDto]),
     __metadata("design:returntype", void 0)
 ], PostsController.prototype, "update", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], PostsController.prototype, "findOne", null);
 __decorate([
@@ -70,7 +70,7 @@ __decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], PostsController.prototype, "remove", null);
 PostsController = __decorate([

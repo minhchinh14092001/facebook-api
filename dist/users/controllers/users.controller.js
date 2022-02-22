@@ -22,10 +22,10 @@ let UsersController = class UsersController {
         this.usersservice = usersservice;
     }
     findOne(id) {
-        return this.usersservice.findOne(id);
+        return this.usersservice.findOne(JSON.parse(id));
     }
     update(id, data) {
-        return this.usersservice.update(id, data);
+        return this.usersservice.update(JSON.parse(id), data);
     }
     findPosts(id) {
         return this.usersservice.findPosts(id);
@@ -35,7 +35,7 @@ __decorate([
     (0, common_1.Get)(':id/profile'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "findOne", null);
 __decorate([
@@ -43,7 +43,7 @@ __decorate([
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, updateProfile_1.UpdateProfile]),
+    __metadata("design:paramtypes", [String, updateProfile_1.UpdateProfile]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "update", null);
 __decorate([
