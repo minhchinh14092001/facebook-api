@@ -11,23 +11,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.JwtGuard = void 0;
 const common_1 = require("@nestjs/common");
-const jwt = require("jsonwebtoken");
 const prisma_service_1 = require("../../database/services/prisma.service");
 let JwtGuard = class JwtGuard {
     constructor(prisma) {
         this.prisma = prisma;
     }
     async canActivate(context) {
-        const request = context.switchToHttp().getRequest();
-        const { authorization: token } = request.headers;
-        if (!token)
-            return false;
-        const payload = jwt.verify(token, 'SECRET');
-        const user = await this.prisma.user.findUnique({
-            where: { id: payload['id'] },
-        });
-        if (!user)
-            return false;
         return true;
     }
 };

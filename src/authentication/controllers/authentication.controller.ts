@@ -3,11 +3,7 @@ import {
   Body,
   UseGuards,
   Post,
-  Res,
-  HttpStatus,
-  HttpException,
 } from '@nestjs/common';
-import { Response } from 'express';
 
 import { JwtGuard } from '../guards/jwt.guard';
 import { LoginDto } from '../dtos/loginDto';
@@ -20,10 +16,10 @@ export class AuthenticationController {
   constructor(private readonly authenticationService: AuthenticationService) {}
 
   @Post('/register')
-  async register(@Res() res: Response, @Body() data: RegisterDto) {
+  async register( @Body() data: RegisterDto) {
     const user = await this.authenticationService.register(data);
 
-    return res.status(HttpStatus.OK).json({ user: user });
+    return { user: user.user };
   }
 
   @Post('/login')

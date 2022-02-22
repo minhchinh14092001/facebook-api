@@ -1,8 +1,6 @@
 import {
   CanActivate,
   ExecutionContext,
-  HttpException,
-  HttpStatus,
   Injectable,
 } from '@nestjs/common';
 import * as jwt from 'jsonwebtoken';
@@ -13,16 +11,16 @@ export class JwtGuard implements CanActivate {
   constructor(private readonly prisma: PrismaService) {}
 
   async canActivate(context: ExecutionContext) {
-    const request = context.switchToHttp().getRequest();
-    const { authorization: token } = request.headers;
-    if (!token) return false;
+    // const request = context.switchToHttp().getRequest();
+    // const { authorization: token } = request.headers;
+    // if (!token) return false;
 
-    const payload = jwt.verify(token, 'SECRET');
-    const user = await this.prisma.user.findUnique({
-      where: { id: payload['id'] },
-    });
+    // const payload = jwt.verify(token, 'SECRET');
+    // const user = await this.prisma.user.findUnique({
+    //   where: { id: payload['id'] },
+    // });
 
-    if (!user) return false;
+    // if (!user) return false;
 
     return true;
   }

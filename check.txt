@@ -1,9 +1,0 @@
-POST :
-> GET ONE = 
-> GET ALL = OK
-> CREATE = Ok
-> Update =
-
-
-AUTH :
-> Register

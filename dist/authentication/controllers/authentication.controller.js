@@ -22,9 +22,9 @@ let AuthenticationController = class AuthenticationController {
     constructor(authenticationService) {
         this.authenticationService = authenticationService;
     }
-    async register(res, data) {
+    async register(data) {
         const user = await this.authenticationService.register(data);
-        return res.status(common_1.HttpStatus.OK).json({ user: user });
+        return { user: user.user };
     }
     async login(dto) {
         const user = await this.authenticationService.login(dto);
@@ -36,10 +36,9 @@ let AuthenticationController = class AuthenticationController {
 };
 __decorate([
     (0, common_1.Post)('/register'),
-    __param(0, (0, common_1.Res)()),
-    __param(1, (0, common_1.Body)()),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, RegisterDto_1.RegisterDto]),
+    __metadata("design:paramtypes", [RegisterDto_1.RegisterDto]),
     __metadata("design:returntype", Promise)
 ], AuthenticationController.prototype, "register", null);
 __decorate([
